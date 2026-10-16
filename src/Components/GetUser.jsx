@@ -68,7 +68,7 @@ export default function GetUser() {
 					))
 					) : (
 					<p className="text-red-500 text-center py-6 font-medium">
-						Nama user tidak ditemukan.
+						User not found.
 					</p>
 					)}
 				</div>
