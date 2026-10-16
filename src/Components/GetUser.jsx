@@ -10,7 +10,7 @@ import { filterUsers } from "../Utils/filterUsers";
 export default function GetUser() {
 	const [sourceData, setSourceData] = useState([]);
 	const [filteredData, setFilteredData] = useState([]);
-	const [searchQuery, setSearchQuery] = useState([]);
+	const [searchQuery, setSearchQuery] = useState("");
 	
 	useEffect(() => {
 		async function fetchData() {
@@ -31,17 +31,17 @@ export default function GetUser() {
 	 *
 	 * @param {React.ChangeEvent<HTMLInputElement>} e - event dari input teks.
 	 */
-	const handleSearch = async (e) => {
+	const handleSearch = (e) => {
 		const query = e.target.value;
 		setSearchQuery(query);
 
-		const hasil = await filterUsers(sourceData, query);
+		const hasil = filterUsers(sourceData, query);
 		setFilteredData(hasil);
 	}
 
 	return (
 		<>
-			<div className="mx-auto p-6">
+			<div className="max-w-2xl mx-auto p-6">
 				<h2 className="text-2xl font-bold text-gray-800 mb-6">
 					searching user
 				</h2>
@@ -51,15 +51,15 @@ export default function GetUser() {
 					placeholder="Cari nama user di sini..."
 					value={searchQuery}
 					onChange={handleSearch}
-					className="w-full p-3 mb-6 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+					className="w-full p-3 mb-6 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-"
 				/>
 
-				<div className="border border-gray-200 rounded-lg p-2 bg-white shadow-sm">
-					{filteredData && filteredData.length > 0 ? (
+				<div className="border border-gray-200 rounded-lg p-2 bg-white">
+					{filteredData.length > 0 ? (
 					filteredData.map((user) => (
 						<div 
 						key={user.id} 
-						className="p-3 border-b border-gray-100 last:border-none hover:bg-gray-50 transition-colors"
+						className="p-3 border-b border-gray-100 last:border-none"
 						>
 						<strong className="block text-lg font-semibold text-gray-800">
 							{user.name}
